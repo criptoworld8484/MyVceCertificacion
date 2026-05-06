@@ -1,60 +1,79 @@
-# MyVCE Certificacion
+# MyVCE Certificación
 
-Simulador de examenes de certificacion F5 BIG-IP.
+Simulador de exámenes de certificación F5 BIG-IP con Streamlit.
 
 ---
 
-## Instalacion Rapida
+## Ejecución Rápida
+
+### Linux/macOS
+
+```bash
+cd MyVCE_Funcional
+pip install -r requirements.txt
+python -m streamlit run app.py --server.port 8502
+```
 
 ### Windows
 
-1. Ir a la carpeta `dist\MyVCE_Certificacion\`
-2. Doble clic en `MyVCE_Certificacion.bat`
-
-La primera vez, el launcher:
-- Creara un entorno virtual de Python
-- Instalara Streamlit y dependencias automaticamente
-- Iniciara la aplicacion
-
-### Linux / macOS
-
-```bash
-cd dist/MyVCE_Certificacion
-chmod +x MyVCE_Certificacion.sh
-./MyVCE_Certificacion.sh
+```cmd
+cd MyVCE_Funcional
+pip install -r requirements.txt
+python -m streamlit run app.py --server.port 8502
 ```
+
+La aplicación se abrirá en: http://localhost:8502
 
 ---
 
 ## Requisitos
 
-- **Python 3.10 o superior** instalado en el sistema
+- **Python 3.10 o superior**
+- **Streamlit**
+- **Google Gemini API Key** (opcional, para OCR)
 
-### Instalar Python
+### Dependencias
 
-**Linux:**
-```bash
-sudo apt install python3 python3-pip
+```
+streamlit
+google-generativeai
+Pillow
+streamlit-autorefresh
 ```
 
-**Windows:**
-1. Descargar de https://www.python.org/downloads/
-2. Ejecutar el instalador
-3. Marcar "Add Python to PATH"
+---
+
+## Características
+
+### 1. Ingesta Manual
+- Añadir preguntas directamente desde el formulario
+- Soporte para imágenes adjuntas
+- Multiple choice con hasta 6 opciones
+- Soporte para preguntas de respuesta múltiple
+
+### 2. Extracción OCR con Gemini
+- Extraer preguntas desde imágenes usando Google Gemini
+- Procesamiento automático de imágenes
+- Validación de preguntas extraídas
+
+### 3. Base de Datos de Preguntas
+- Ver todas las preguntas disponibles
+- Filtrar por estado (correctas/incorrectas)
+- Editar y eliminar preguntas
+- Importar/Exportar en formato ZIP (incluye imágenes)
+
+### 4. Simulador de Examen
+- **Modo Práctica**: Sin límite de tiempo, feedback inmediato
+- **Modo Examen**: Temporizador configurable, evaluación final
+- Navegación entre preguntas
+- Seguimiento de progreso
+- Timer en tiempo real con cuenta regresiva
 
 ---
 
-## Despues de Ejecutar
+## Configurar API Key de Gemini (Opcional)
 
-1. Se abrira automaticamente el navegador
-2. Si no, ir a la URL que muestre en la terminal
-3. La primera vez, configurar la API Key de Google Gemini (opcional)
-
----
-
-## Configurar API Key (Opcional)
-
-Para usar la funcion de OCR:
+Para usar la función de OCR:
 
 1. Ir a: https://makersuite.google.com/app/apikey
 2. Crear una API Key de Google Gemini
@@ -62,114 +81,59 @@ Para usar la funcion de OCR:
 
 ---
 
-## Compilar / Preparar Distribucion
-
-### Windows
-
-1. Ejecutar `build\build_windows.bat`
-2. Los archivos se generan en `dist\MyVCE_Certificacion\`
-
-### Linux
-
-1. Ejecutar `build\build_linux.sh`
-2. Los archivos se generan en `dist/MyVCE_Certificacion/`
-
----
-
-## Crear Instalador .exe (Windows)
-
-### Paso 1: Instalar Inno Setup
-
-1. Descargar de: https://jrsoftware.org/isdl.php
-2. Instalar con opciones predeterminadas
-
-### Paso 2: Generar la distribucion
-
-```batch
-build\build_windows.bat
-```
-
-### Paso 3: Generar el instalador
-
-```batch
-build_installer.bat
-```
-
-El instalador se generara en: `installer\MyVCE_Certificacion_Setup_v1.0.exe`
-
----
-
 ## Estructura del Proyecto
 
 ```
 MyVCE_Funcional/
-├── app.py                    # Codigo fuente principal
+├── app.py                    # Código fuente principal
 ├── preguntas.json            # Base de preguntas del examen
-├── imagenes_preguntas/       # Imagenes de preguntas (116 archivos)
+├── imagenes_preguntas/       # Imágenes de preguntas
 ├── requirements.txt         # Dependencias de Python
-├── README.md                # Esta documentacion
-├── setup.iss               # Script para Inno Setup (generar instalador)
-├── build_installer.bat     # Script para generar el instalador .exe
-├── src/                    # Modulos auxiliares
-│   ├── paths.py            # Gestion de rutas
+├── README.md                # Esta documentación
+├── src/                    # Módulos auxiliares
+│   ├── paths.py            # Gestión de rutas
 │   ├── api_key_manager.py  # Almacenamiento seguro de API keys
 │   └── __init__.py
-├── build/                  # Scripts de compilacion
-│   ├── build_windows.bat   # Preparar distribucion Windows
-│   ├── build_linux.sh      # Preparar distribucion Linux
-│   ├── MyVCE_Certificacion.bat  # Launcher Windows
-│   └── MyVCE_Certificacion.sh   # Launcher Linux
-├── dist/                   # (Generado por build scripts)
-│   └── MyVCE_Certificacion/
-│       ├── MyVCE_Certificacion.sh
-│       ├── MyVCE_Certificacion.bat
-│       ├── venv/               # Entorno virtual con dependencias
-│       └── _internal/
-│           ├── app.py
-│           ├── preguntas.json
-│           ├── imagenes_preguntas/
-│           └── src/
-└── installer/              # (Generado por Inno Setup)
-    └── MyVCE_Certificacion_Setup_v1.0.exe
+└── build/                  # Scripts de compilación
+    ├── build_windows.bat   # Preparar distribución Windows
+    ├── build_linux.sh     # Preparar distribución Linux
+    ├── MyVCE_Certificacion.bat  # Launcher Windows
+    └── MyVCE_Certificacion.sh   # Launcher Linux
 ```
 
 ---
 
-## Flujo de Trabajo
+## Solución de Problemas
 
-### Para Desarrollo
-1. Modificar `app.py` y demas archivos fuente
-2. Probar con: `python -m streamlit run app.py`
+### "Puerto en uso"
+- La app usará automáticamente otro puerto disponible
+- Especificar puerto: `python -m streamlit run app.py --server.port 8503`
 
-### Para Distribucion
+### Error al cargar imágenes
+- Verificar que la carpeta `imagenes_preguntas/` existe
+- Las imágenes deben estar en formato PNG, JPG o JPEG
+
+### Timer no actualiza
+- El timer usa `streamlit-autorefresh` para actualizarse cada segundo
+- Verificar que el paquete está instalado: `pip install streamlit-autorefresh`
+
+---
+
+## Desarrollo
+
+### Ejecutar en modo desarrollo
+```bash
+python -m streamlit run app.py --server.port 8502 --server.reload true
+```
+
+### Compilar para distribución
 
 **Windows:**
-```
-build\build_windows.bat    -> prepara dist\
-build_installer.bat        -> genera installer\MyVCE_Certificacion_Setup_v1.0.exe
+```batch
+build\build_windows.bat
 ```
 
 **Linux:**
+```bash
+build/build_linux.sh
 ```
-build\build_linux.sh       -> prepara dist/
-```
-
----
-
-## Solucion de Problemas
-
-### "Python no encontrado"
-- Verificar que Python este instalado
-- En Windows, reiniciar despues de instalar Python
-
-### "Puerto en uso"
-- Cerrar otras aplicaciones que usen ese puerto
-- La app usara automaticamente otro puerto disponible
-
-### La app no inicia
-- Ejecutar `build\build_windows.bat` primero
-- Verificar que `dist\MyVCE_Certificacion\_internal\app.py` existe
-
-### Primera ejecucion lenta
-- Es normal, necesita instalar dependencias
-- La segunda ejecucion sera mas rapida
