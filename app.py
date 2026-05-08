@@ -49,47 +49,61 @@ st.set_page_config(page_title="Gestión de Preguntas", layout="wide", page_icon=
 # ✅ CSS ULTRA MEJORADO PARA CHECKBOXES Y ANIMACIONES
 st.markdown("""
 <style>
+    /* ===== FUENTES GRANDES Y BORDES GRUESOS ===== */
+
+    /* Títulos principales */
+    h1, h2, h3 {
+        font-weight: 800 !important;
+        letter-spacing: -0.5px !important;
+    }
+
+    /* Labels y textos */
+    label, .stRadio label, div[data-testid="stRadio"] label {
+        font-size: 16px !important;
+        font-weight: 600 !important;
+    }
+
     /* ===== CHECKBOXES SUPER VISIBLES ===== */
-    
+
     /* Contenedor del checkbox */
     div[data-testid="stCheckbox"] {
         background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
-        border: 2px solid #22c55e !important;
-        border-radius: 8px !important;
-        padding: 12px !important;
-        margin: 8px 0 !important;
-        box-shadow: 0 2px 6px rgba(34, 197, 94, 0.2) !important;
+        border: 4px solid #22c55e !important;
+        border-radius: 12px !important;
+        padding: 16px !important;
+        margin: 10px 0 !important;
+        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3) !important;
         transition: all 0.3s ease !important;
     }
-    
+
     div[data-testid="stCheckbox"]:hover {
         background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%) !important;
         border-color: #16a34a !important;
-        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3) !important;
-        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 16px rgba(34, 197, 94, 0.5) !important;
+        transform: translateY(-3px) !important;
     }
-    
+
     /* Input checkbox - SUPER GRANDE Y VERDE */
     div[data-testid="stCheckbox"] input[type="checkbox"] {
-        width: 32px !important;
-        height: 32px !important;
+        width: 36px !important;
+        height: 36px !important;
         accent-color: #10b981 !important;
         cursor: pointer !important;
-        border: 3px solid #10b981 !important;
-        border-radius: 6px !important;
+        border: 4px solid #10b981 !important;
+        border-radius: 8px !important;
     }
-    
+
     /* Label del checkbox */
     div[data-testid="stCheckbox"] label {
-        font-size: 18px !important;
-        font-weight: 700 !important;
+        font-size: 22px !important;
+        font-weight: 800 !important;
         color: #065f46 !important;
         cursor: pointer !important;
     }
-    
+
     div[data-testid="stCheckbox"] label span {
         color: #065f46 !important;
-        font-weight: 700 !important;
+        font-weight: 800 !important;
     }
     
     /* Cuando está checked */
@@ -108,46 +122,56 @@ st.markdown("""
     }
     
     /* ===== BOTONES MEJORADOS ===== */
-    
+
     .stButton > button[kind="primary"] {
         background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%) !important;
         color: white !important;
-        border: none !important;
+        border: 4px solid #7c3aed !important;
+        font-weight: 800 !important;
+        font-size: 18px !important;
+        padding: 16px 32px !important;
+        border-radius: 12px !important;
+        box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5) !important;
+        transition: all 0.3s ease !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
+    }
+
+    .stButton > button[kind="primary"]:hover {
+        transform: translateY(-4px) !important;
+        box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6) !important;
+    }
+
+    .stButton > button[kind="secondary"] {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+        color: white !important;
+        border: 4px solid #b91c1c !important;
+        font-weight: 800 !important;
+        font-size: 18px !important;
+        padding: 16px 32px !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4) !important;
+    }
+
+    .stButton > button[kind="secondary"]:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 6px 16px rgba(239, 68, 68, 0.5) !important;
+    }
+
+    .stButton > button {
+        background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%) !important;
+        color: white !important;
+        border: 4px solid #15803d !important;
         font-weight: 700 !important;
         font-size: 16px !important;
         padding: 14px 28px !important;
         border-radius: 10px !important;
-        box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4) !important;
-        transition: all 0.3s ease !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.5px !important;
-    }
-    
-    .stButton > button[kind="primary"]:hover {
-        transform: translateY(-3px) !important;
-        box-shadow: 0 6px 16px rgba(139, 92, 246, 0.5) !important;
-    }
-    
-    .stButton > button[kind="secondary"] {
-        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
-        color: white !important;
-        font-weight: 700 !important;
-    }
-    
-    .stButton > button {
-        background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%) !important;
-        color: white !important;
-        border: none !important;
-        font-weight: 600 !important;
-        font-size: 15px !important;
-        padding: 10px 20px !important;
-        border-radius: 8px !important;
-        box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3) !important;
+        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4) !important;
         transition: all 0.2s ease !important;
     }
-    
+
     .stButton > button:hover {
-        transform: translateY(-2px) !important;
+        transform: translateY(-3px) !important;
         box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4) !important;
     }
     
@@ -223,6 +247,183 @@ st.markdown("""
     .stSpinner > div > div {
         color: #8b5cf6 !important;
         font-weight: 600 !important;
+    }
+
+    /* ===== RADIO BUTTONS / TABS MEJORADOS ===== */
+    div[data-testid="stRadio"] > div {
+        background: #f1f5f9;
+        border-radius: 16px;
+        padding: 8px;
+        border: 3px solid #e2e8f0;
+    }
+
+    div[data-testid="stRadio"] > div > label {
+        font-weight: 700;
+        font-size: 16px !important;
+        padding: 12px 22px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        margin: 3px;
+        border: 2px solid transparent;
+    }
+
+    div[data-testid="stRadio"] > div > label:has(input:checked) {
+        background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+        color: white;
+        box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+        font-weight: 800;
+        border: 3px solid #7c3aed;
+    }
+
+    div[data-testid="stRadio"] > div > label:hover:not(:has(input:checked)) {
+        background: #e2e8f0;
+        border: 2px solid #cbd5e1;
+    }
+
+    /* ===== CHECKBOXES MEJORADOS ===== */
+    div[data-testid="stCheckbox"]:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(34, 197, 94, 0.35);
+    }
+
+    /* Badge de letra más grande y atractivo */
+    div[data-testid="stCheckbox"] span[data-testid="checkbox"] + div {
+        font-size: 16px !important;
+        font-weight: 700 !important;
+    }
+
+    /* ===== FORM SUBMIT BUTTONS MEJORADOS ===== */
+    .stFormSubmitButton > button {
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        padding: 12px 24px !important;
+        border-radius: 10px !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .stFormSubmitButton > button:hover {
+        transform: translateY(-2px) !important;
+    }
+
+    /* ===== SLIDER MEJORADO ===== */
+    div[data-testid="stSlider"] div[role="slider"] {
+        background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%) !important;
+        box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4) !important;
+    }
+
+    /* ===== METRICS MEJORADOS ===== */
+    div[data-testid="stMetric"] {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        border-radius: 12px;
+        padding: 16px;
+        border: 2px solid #0ea5e9;
+    }
+
+    div[data-testid="stMetricValue"] {
+        color: #0284c7 !important;
+        font-weight: 800 !important;
+        font-size: 28px !important;
+    }
+
+    /* ===== DARK MODE - MODO OSCURO ===== */
+    /* Automatic dark mode detection disabled - using manual toggle only */
+    /* @media (prefers-color-scheme: dark) { */
+        /* Automatic dark mode disabled - controlled by toggle only */
+    /* } */
+
+    /* ===== MANUAL DARK MODE TOGGLE CSS ===== */
+    /* Esta clase se aplica cuando el usuario activa el modo oscuro manualmente */
+    .dark-mode-active {
+        /* Texto principal - BLANCO BOLD */
+        body, .stApp, div, p, span, label, h1, h2, h3, h4, h5, h6 {
+            color: #fafafa !important;
+        }
+
+        .stApp {
+            background: #0e1117 !important;
+        }
+
+        div[data-testid="stCheckbox"] {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%) !important;
+            border: 4px solid #34d399 !important;
+        }
+
+        div[data-testid="stCheckbox"] label {
+            color: #ffffff !important;
+            font-weight: 800 !important;
+        }
+
+        div[data-testid="stCheckbox"]:has(input:checked) {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+            border-color: #34d399 !important;
+        }
+
+        .stButton > button[kind="primary"] {
+            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%) !important;
+            border-color: #c4b5fd !important;
+            color: #ffffff !important;
+        }
+
+        .stButton > button {
+            background: linear-gradient(135deg, #34d399 0%, #10b981 100%) !important;
+            border-color: #6ee7b7 !important;
+            color: #ffffff !important;
+        }
+
+        .stButton > button[kind="secondary"] {
+            background: linear-gradient(135deg, #f87171 0%, #ef4444 100%) !important;
+            border-color: #fca5a5 !important;
+            color: #ffffff !important;
+        }
+
+        div[data-testid="stRadio"] > div {
+            background: #1f2937 !important;
+            border: 3px solid #374151 !important;
+        }
+
+        div[data-testid="stRadio"] > div > label {
+            color: #e5e7eb !important;
+        }
+
+        div[data-testid="stRadio"] > div > label:has(input:checked) {
+            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%) !important;
+            border: 3px solid #c4b5fd !important;
+            color: #ffffff !important;
+        }
+
+        div[data-testid="stMetric"] {
+            background: linear-gradient(135deg, #1e3a5f 0%, #172554 100%) !important;
+            border: 2px solid #38bdf8 !important;
+        }
+
+        div[data-testid="stMetricValue"] {
+            color: #38bdf8 !important;
+        }
+
+        div[data-testid="stSlider"] div[role="slider"] {
+            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%) !important;
+        }
+
+        .streamlit-expanderHeader {
+            background: #1f2937 !important;
+            color: #fafafa !important;
+        }
+
+        .stTextArea textarea, .stTextInput input {
+            background: #1f2937 !important;
+            color: #fafafa !important;
+            border-color: #4b5563 !important;
+        }
+
+        .stFormSubmitButton > button {
+            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%) !important;
+            color: #ffffff !important;
+            border: 3px solid #c4b5fd !important;
+        }
+
+        .stProgress > div > div > div {
+            background: linear-gradient(90deg, #a78bfa 0%, #8b5cf6 100%) !important;
+        }
     }
 </style>
 """, unsafe_allow_html=True)
@@ -584,6 +785,473 @@ def limpiar_formulario_manual():
     for letra in ["A", "B", "C", "D", "E", "F"]:
         st.session_state[f"manual_texto_{letra}"] = ""
         st.session_state[f"manual_corr_{letra}"] = False
+
+# --- DARK MODE TOGGLE ---
+# Initialize from session state or use toggle value
+if "dark_toggle" in st.session_state:
+    st.session_state.modo_oscuro = st.session_state.dark_toggle
+else:
+    if "modo_oscuro" not in st.session_state:
+        st.session_state.modo_oscuro = False
+
+# Apply dark mode CSS if enabled - inject directly into stApp
+if st.session_state.modo_oscuro:
+    st.markdown("""
+    <style>
+    /* Dark mode - applied directly to root */
+    html, body, .stApp {
+        background: #0e1117 !important;
+        color: #fafafa !important;
+    }
+
+    /* Override all text colors */
+    body, .stApp, div, p, span, label, h1, h2, h3, h4, h5, h6, li, td, th {
+        color: #fafafa !important;
+    }
+
+    /* Main app background */
+    .stApp {
+        background-color: #0e1117 !important;
+    }
+
+    /* Headers and titles */
+    h1, h2, h3, h4, h5, h6, .stHeader {
+        color: #fafafa !important;
+    }
+
+    /* Checkboxes */
+    div[data-testid="stCheckbox"] {
+        background: linear-gradient(135deg, #1f2937 0%, #374151 100%) !important;
+        border: 4px solid #34d399 !important;
+    }
+    div[data-testid="stCheckbox"] label {
+        color: #ffffff !important;
+        font-weight: 800 !important;
+        font-size: 22px !important;
+    }
+    div[data-testid="stCheckbox"]:has(input:checked) {
+        background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+        border-color: #34d399 !important;
+    }
+
+    /* Buttons */
+    .stButton > button[kind="primary"] {
+        background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%) !important;
+        border-color: #c4b5fd !important;
+        color: #ffffff !important;
+    }
+    .stButton > button {
+        background: linear-gradient(135deg, #34d399 0%, #10b981 100%) !important;
+        border-color: #6ee7b7 !important;
+        color: #ffffff !important;
+    }
+    .stButton > button[kind="secondary"] {
+        background: linear-gradient(135deg, #f87171 0%, #ef4444 100%) !important;
+        border-color: #fca5a5 !important;
+        color: #ffffff !important;
+    }
+
+    /* Radio buttons / Tabs */
+    div[data-testid="stRadio"] > div {
+        background: #1f2937 !important;
+        border: 3px solid #374151 !important;
+    }
+    div[data-testid="stRadio"] > div > label {
+        color: #e5e7eb !important;
+    }
+    div[data-testid="stRadio"] > div > label:has(input:checked) {
+        background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%) !important;
+        border: 3px solid #c4b5fd !important;
+        color: #ffffff !important;
+    }
+
+    /* Metrics */
+    div[data-testid="stMetric"] {
+        background: linear-gradient(135deg, #1e3a5f 0%, #172554 100%) !important;
+        border: 2px solid #38bdf8 !important;
+    }
+    div[data-testid="stMetricValue"] {
+        color: #38bdf8 !important;
+    }
+
+    /* Slider */
+    div[data-testid="stSlider"] div[role="slider"] {
+        background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%) !important;
+    }
+
+    /* Expanders */
+    .streamlit-expanderHeader {
+        background: #1f2937 !important;
+        color: #fafafa !important;
+    }
+
+    /* Text inputs */
+    .stTextArea textarea, .stTextInput input {
+        background: #1f2937 !important;
+        color: #fafafa !important;
+        border-color: #4b5563 !important;
+    }
+
+    /* Form submit buttons */
+    .stFormSubmitButton > button {
+        background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%) !important;
+        color: #ffffff !important;
+        border: 3px solid #c4b5fd !important;
+    }
+
+    /* Progress bar */
+    .stProgress > div > div > div {
+        background: linear-gradient(90deg, #a78bfa 0%, #8b5cf6 100%) !important;
+    }
+
+    /* Sidebar */
+    [data-testid="stSidebar"] {
+        background: #0f172a !important;
+    }
+
+    /* Toggle switch */
+    [data-testid="stToggle"] label {
+        color: #fafafa !important;
+    }
+
+    /* ===== CORRECCIONES FONDO BLANCO ===== */
+
+    /* Todos los contenedores principales */
+    section[data-testid="stMain"] {
+        background: #0e1117 !important;
+    }
+
+    /* Contenedores de elementos */
+    div[data-testid="stVerticalStackWrapper"],
+    div[data-testid="stHorizontalBlock"],
+    .stKey,
+    div[class*="stVertical"] {
+        background: transparent !important;
+    }
+
+    /* Opción de respuesta específica - fondo oscuro */
+    div[data-testid="stCheckbox"] {
+        background: #1f2937 !important;
+        border: 4px solid #34d399 !important;
+    }
+
+    /* Labels dentro de checkboxes */
+    div[data-testid="stCheckbox"] label,
+    div[data-testid="stCheckbox"] label span {
+        color: #ffffff !important;
+        background: transparent !important;
+    }
+
+    /* Texto de opciones */
+    div[data-testid="stCheckbox"] span,
+    div[data-testid="stCheckbox"] div {
+        color: #ffffff !important;
+    }
+
+    /* Checkbox marcado */
+    div[data-testid="stCheckbox"]:has(input:checked) {
+        background: #047857 !important;
+        border-color: #34d399 !important;
+    }
+
+    /* Contenedor del formulario de respuestas */
+    div[data-testid="stForm"] {
+        background: transparent !important;
+    }
+
+    /* Alerts y mensajes */
+    div[data-testid="stAlert"] {
+        background: #1f2937 !important;
+        color: #fafafa !important;
+    }
+
+    /* Success messages */
+    .stSuccess {
+        background: #065f46 !important;
+        color: #fafafa !important;
+    }
+
+    /* Info messages */
+    .stInfo {
+        background: #1e3a5f !important;
+        color: #fafafa !important;
+    }
+
+    /* Warning messages */
+    .stWarning {
+        background: #78350f !important;
+        color: #fafafa !important;
+    }
+
+    /* Error messages */
+    .stError {
+        background: #7f1d1d !important;
+        color: #fafafa !important;
+    }
+
+    /* Explicación de pregunta */
+    div[data-testid="stMarkdownContainer"] p {
+        color: #fafafa !important;
+    }
+
+    /* Slider track */
+    div[data-testid="stSlider"] .stSlider {
+        background: #374151 !important;
+    }
+
+    /* Radio options en general */
+    div[data-testid="stRadio"] span,
+    div[data-testid="stRadio"] div {
+        color: #fafafa !important;
+    }
+
+    /* Tooltips */
+    .stTooltipIcon {
+        color: #fafafa !important;
+    }
+
+    /* Progress bar container */
+    .stProgress .stProgressContent {
+        background: #374151 !important;
+    }
+
+    /* Metricas label */
+    div[data-testid="stMetricLabel"] {
+        color: #d1d5db !important;
+    }
+
+    /* Columnas */
+    div[data-testid="stColumn"] {
+        background: transparent !important;
+    }
+
+    /* ===== ELEMENTOS ESPECÍFICOS ===== */
+
+    /* File uploader - contenedor */
+    div[data-testid="stFileUploader"],
+    div[class*="stFileUploader"],
+    section[class*="stFileUploader"] {
+        background: #1f2937 !important;
+        border-radius: 12px !important;
+        padding: 16px !important;
+    }
+
+    /* File uploader - label */
+    div[data-testid="stFileUploader"] label,
+    div[data-testid="stFileUploader"] span,
+    section[class*="stFileUploader"] label {
+        color: #fafafa !important;
+    }
+
+    /* Botón de subir archivo - TODOS los botones en file uploader */
+    div[data-testid="stFileUploader"] button,
+    section[class*="stFileUploader"] button,
+    [data-testid="stFileUploaderDropzone"] button,
+    button[aria-label*="Choose file"],
+    button:has(span:contains("Choose file")),
+    .stFileUploader button {
+        background: #374151 !important;
+        color: #fafafa !important;
+        border: 2px solid #6b7280 !important;
+    }
+
+    /* Dropzone text */
+    div[data-testid="stFileUploader"] small,
+    div[data-testid="stFileUploader"] p,
+    section[class*="stFileUploader"] p,
+    section[class*="stFileUploader"] small {
+        color: #d1d5db !important;
+    }
+
+    /* Dropzone */
+    [data-testid="stFileUploaderDropzone"],
+    div[class*="Dropzone"] {
+        background: #1f2937 !important;
+        border: 2px dashed #4b5563 !important;
+        color: #d1d5db !important;
+    }
+
+    /* Expander - configuración API */
+    .streamlit-expanderHeader {
+        background: #1f2937 !important;
+        color: #fafafa !important;
+        border: 1px solid #374151 !important;
+    }
+
+    /* Expander content */
+    .streamlit-expanderContent {
+        background: #1f2937 !important;
+    }
+
+    /* Botones secundarios específicos */
+    button[kind="secondary"],
+    .stButton > button[kind="secondary"],
+    button:has(span:contains("Sube")) {
+        background: #374151 !important;
+        color: #fafafa !important;
+        border: 2px solid #6b7280 !important;
+    }
+
+    /* Input labels */
+    .stTextInput label,
+    .stTextArea label,
+    .stSelectbox label,
+    .stFileUploader label {
+        color: #fafafa !important;
+        font-weight: 600 !important;
+    }
+
+    /* Placeholder text */
+    input::placeholder,
+    textarea::placeholder {
+        color: #9ca3af !important;
+    }
+
+    /* Help buttons */
+    button[aria-label*="Help"] {
+        background: #374151 !important;
+        color: #fafafa !important;
+    }
+
+    /* Password visibility toggle - más específico */
+    button[aria-label*="password"],
+    button[aria-label*="Show"],
+    button[aria-label*="Hide"],
+    button[data-testid="visibilityToggle"],
+    [data-testid="stTextInputVisibilityToggle"],
+    svg[aria-label*="eye"] {
+        background: #4b5563 !important;
+        color: #fafafa !important;
+        fill: #fafafa !important;
+    }
+
+    /* TODOS los botones - con selectores más amplios */
+    button,
+    [role="button"],
+    input[type="button"],
+    input[type="submit"],
+    .btn,
+    [class*="Button"] {
+        background: #374151 !important;
+        color: #fafafa !important;
+        border: 2px solid #4b5563 !important;
+    }
+
+    /* Botones con primary - mantener violeta */
+    button[kind="primary"],
+    .stButton > button[kind="primary"],
+    button[class*="primary"],
+    [data-testid="baseButton-primary"],
+    button[class*="BaseButton-primary"] {
+        background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%) !important;
+        color: #ffffff !important;
+        border: 2px solid #c4b5fd !important;
+    }
+
+    /* Botón secondary - para file uploader */
+    button[kind="secondary"],
+    .stButton > button[kind="secondary"],
+    [data-testid="baseButton-secondary"],
+    button[class*="BaseButton-secondary"],
+    button[class*="secondary"] {
+        background: #4b5563 !important;
+        color: #fafafa !important;
+        border: 2px solid #6b7280 !important;
+    }
+
+    /* File uploader - todos los botones dentro */
+    div[class*="FileUploader"] button,
+    section[class*="stFileUploader"] button,
+    [data-testid="stFileUploader"] button,
+    .stFileUploader button,
+    div[data-testid="stFileUploader"] button,
+    [class*="Dropzone"] button {
+        background: #4b5563 !important;
+        color: #fafafa !important;
+        border: 2px solid #6b7280 !important;
+    }
+
+    /* Input icon buttons (password visibility, etc) - MEJORADO */
+    [class*="InputIcon"],
+    [class*="VisibilityToggle"],
+    svg[aria-label*="eye"],
+    [class*="StyledIconButton"] {
+        background: transparent !important;
+        color: #fafafa !important;
+    }
+
+    /* BOTÓN DE VISIBILIDAD CONTRASEÑA - CRÍTICO */
+    /* Targeting Streamlit's internal password toggle */
+    button[aria-label="Toggle password visibility"],
+    button[aria-label="Show password text"],
+    button[aria-label="Hide password text"],
+    button[data-testid="stTextInputVisibilityToggle"],
+    [data-testid="stTextInput"] button,
+    div[data-testid="stTextInput"] button,
+    .stTextInput button,
+    /* SVG icons in password field */
+    [data-testid="stTextInput"] svg,
+    div[class*="InputContainer"] svg,
+    /* BaseWeb button inside input */
+    [data-baseweb="input"] button,
+    div[class*="InputContainer"] button {
+        background: #4b5563 !important;
+        color: #fafafa !important;
+        fill: #fafafa !important;
+        border: 1px solid #6b7280 !important;
+    }
+
+    /* Hover state for password toggle - mantener consistencia */
+    button[aria-label="Toggle password visibility"]:hover,
+    button[aria-label="Show password text"]:hover,
+    button[aria-label="Hide password text"]:hover {
+        background: #6b7280 !important;
+        color: #fafafa !important;
+    }
+
+    /* Spinner */
+    .stSpinner {
+        color: #a78bfa !important;
+    }
+
+    /* Code blocks */
+    code {
+        background: #1f2937 !important;
+        color: #fafafa !important;
+    }
+
+    /* Links */
+    a, .stLink {
+        color: #a78bfa !important;
+    }
+
+    /* Divider */
+    hr {
+        border-color: #374151 !important;
+    }
+
+    /* Selectbox dropdown */
+    .stSelectbox div[data-baseweb="select"] {
+        background: #1f2937 !important;
+        border-color: #374151 !important;
+    }
+
+    /* Tooltips */
+    div[role="tooltip"] {
+        background: #1f2937 !important;
+        color: #fafafa !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+# Toggle button row
+col_toggle, col_title = st.columns([1, 6])
+with col_toggle:
+    modo_oscuro = st.toggle("🌙 Dark", key="dark_toggle")
+    # Update session state and rerun if changed
+    if "dark_toggle" in st.session_state and st.session_state.modo_oscuro != modo_oscuro:
+        st.session_state.modo_oscuro = modo_oscuro
+        st.rerun()
 
 # --- PESTAÑAS PRINCIPALES CON ESTADO ---
 opciones_pestanas = ["✍️ Ingesta Manual", "📸 Extracción OCR", "📊 Ver Preguntas", "🎮 Simulador"]
@@ -1725,15 +2393,15 @@ elif pestana_seleccionada == "🎮 Simulador":
                 col1, col2, col3 = st.columns([1, 1, 1])
                 
                 with col1:
-                    btn_anterior = st.form_submit_button("⬅ Anterior", use_container_width=True) if idx > 0 else None
-                
+                    btn_anterior = st.form_submit_button("⬅ Anterior", type="secondary", use_container_width=True) if idx > 0 else None
+
                 with col2:
                     respondidas = len(st.session_state.respuestas_usuario)
                     st.metric("📊", f"{respondidas}/{total}")
-                
+
                 with col3:
                     if idx < total - 1:
-                        btn_siguiente = st.form_submit_button("Siguiente ➡", use_container_width=True)
+                        btn_siguiente = st.form_submit_button("Siguiente ➡", type="primary", use_container_width=True)
                     else:
                         btn_finalizar = st.form_submit_button("🏁 Finalizar", type="primary", use_container_width=True)
             
